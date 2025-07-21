@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | Innova-Colors</title>
+
+
+    <style>
+        .contact-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 2rem;
+            text-align: center;
+            }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-form input,
+            .contact-form textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 1.8rem;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #4CAF50;
+        }
+
+        .whatsapp {
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+
+        .rainbow-text {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, pink, hotpink, fuchsia, purple, magenta, cyan, turquoise,
+            lime, chartreuse, olive, teal, aquamarine, skyblue,
+            deepskyblue, dodgerblue, royalblue, navy, midnightblue,
+            gold, goldenrod, coral, tomato, salmon, firebrick,
+            crimson, maroon, brown, chocolate, sienna, tan,
+            beige, wheat, ivory, lavender, thistle, plum);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbow 20s linear infinite;
+            background-size: 400%;
+            text-align: left;
+            margin-left: 65%;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0%; }
+            100% { background-position: 100%; }
+        }
+
+
+        .navbar{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #222;
+            color: #eee;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 94%;
+            z-index: 1000;
+        }
+
+        .menu-icon{
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .navbar-titulo{
+            text-align: right;
+            flex-grow: 1;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar-espacio{
+            height: 60px;
+        }
+
+
+        .sidebar{
+            height: 100%;
+            width: 250px;
+            background-color: #335;
+            color: #eee;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.4s ease;
+            padding-top: 100px;
+            z-index: 999;
+        }
+
+        .sidebar a{
+            display: block;
+            padding: 15px 20px;
+            color: #eee;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .sidebar a:hover{
+            background-color: #555;
+        }
+
+        .sidebar.open{
+            left: 0;
+        }
+
+        .overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 998;
+            display: none;
+        }
+
+        .overlay.show{
+            display: block;
+        }
+
+        .dropdown{
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 20px;
+            background-color: #006;
+        }
+
+        .dropdown.open{
+            max-height: 200px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+  <div class="navbar" style="margin-left: 9px;">
+        <div class="menu-icon" onclick="toggleMenu()">
+            ☰
+        </div>
+        <div class="navbar-titulo, rainbow-text">
+            Inventario Innova Colors
+        </div>
+        <div style="width: 24px;">
+        </div>
+        <div class="navbar-espacio">
+        </div>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <a href="index.html">Inicio</a>
+        <a href="contactos.html">Contactos</a>
+        <a href="nosotros.html">Sobre nosotros</a>
+
+        <a href="#" onclick="toggleDropdown()">Filtro de productos v</a>
+
+       <div id="dropdown" class="dropdown">
+        <a href="#" onclick="filtrarProductos('gorras')">Gorras</a>
+        <a href="#" onclick="filtrarProductos('llavero')">Llavero</a>
+        <a href="#" onclick="filtrarProductos('objeto de consola')">Objeto de consola</a>
+    </div>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+
+    <div style="margin-bottom: 100px;"></div>
+
+
+
+  <header>
+    <h1>Contáctanos</h1>
+  </header>
+
+  <main class="contact-container">
+    <p>Hacemos entregas los <strong>sábados en Megamall</strong>.</p>
+    <p>¡Contáctanos para pedidos <strong>personalizados</strong>!</p>
+
+    <form class="contact-form">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo" required>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="social-icons">
+        
+      <a href="https://www.instagram.com/innova.colors.m3d?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"> <img src="Productos-imagenes/logo-insta.jpg" alt="instagram" style="width: 80px; height: 80px;"> <i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1FvYfVuFT3/" target="_blank"> <img src="Productos-imagenes/logo-facebook.png" alt="facebook" style="width: 60px; height: 60px;"> <i class="fab fa-facebook"></i></a>
+    </div>
+
+    <p class="whatsapp">Escríbenos al WhatsApp: <strong>+504 3224-2975</strong></p>
+  </main>
+
+
+
+  <script>
+    function toggleMenu(){
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+    }
+
+    function toggleDropdown(){
+        const dropdown = document.getElementById('dropdown');
+
+        dropdown.classList.toggle('open');
+
+    }
+
+    function filtrarProductos(categoria){
+            const productos = document.querySelectorAll(".producto");
+            productos.forEach(producto => {
+                const tipo = producto.getAttribute("data-tipo");
+                if (categoria === 'todos' || tipo === categoria) {
+                    producto.style.display = "block";
+                } else {
+                    producto.style.display = "none";
+                }
+            });
+
+             const titulo = document.getElementById('Titulo-productos');
+             titulo.textContent = categoria === 'todos' ? 'Todos los productos' : `Tipo de Producto: ${categoria}`;
+
+        }
+</script>
+
+
+
+</body>
+</html>
